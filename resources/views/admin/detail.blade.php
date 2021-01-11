@@ -43,11 +43,12 @@
                     Change Password
                 </h4>
             </div>
-            <form action="{{ route('admin.change', ['id' => Auth::id()]) }}" method="post">
+            <form action="{{ route('admin.change') }}" method="post">
                 @csrf
                 <div class="card m-b-30">
                     <div class="card-body">
                         <div class="row">
+                            <input type="hidden" name="id" value="{{ Auth::id() }}">
                             <div class="col-4 form-group">
                                 <label>Old password <span style="color: red">*</span></label>
                                 <input type="password" name="old_pass" id="old_pass" class="form-control" required placeholder="Enter old password"/>
@@ -55,12 +56,12 @@
                             </div>
                             <div class="col-4 form-group">
                                 <label>New password <span style="color: red">*</span></label>
-                                <input type="password" name="new_pass" id="new_pass" class="form-control" placeholder="Enter new password"/>
+                                <input type="password" name="new_pass" id="new_pass" class="form-control" minlength="6" maxlength="20" placeholder="Enter new password"/>
                                 <span toggle="#new_pass" class="fa fa-eye new_pass eyes"></span>
                             </div>
                             <div class="col-4 form-group">
                                 <label>Confirm new password <span style="color: red">*</span></label>
-                                <input type="password" name="confirm_pass" id="confirm_pass" class="form-control" placeholder="Enter confirm new password"/>
+                                <input type="password" name="confirm_pass" id="confirm_pass" class="form-control" minlength="6" maxlength="20" placeholder="Enter confirm new password"/>
                                 <span toggle="#confirm_pass" class="fa fa-eye confirm_pass eyes"></span>
                             </div>
                         </div>

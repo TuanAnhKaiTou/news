@@ -77,7 +77,7 @@ Route::middleware('auth:admin')->group(function() {
             Route::get('edit/{id}', 'AdminController@edit')->name('edit');
             Route::post('edit/{id}', 'AdminController@update')->name('update');
             Route::delete('delete', 'AdminController@destroy')->name('delete');
-            Route::post('change-pass/{id}', 'AdminController@changePass')->name('change');
+            Route::post('change-pass', 'AdminController@changePass')->name('change');
             Route::get('{id}', 'AdminController@show')->name('show');
         });
     });

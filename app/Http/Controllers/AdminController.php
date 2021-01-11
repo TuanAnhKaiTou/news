@@ -96,15 +96,23 @@ class AdminController extends Controller
         ]);
     }
 
-    public function changePass(Request $req, $id) {
-        $admin = Admin::find($id);
+    public function changePass(Request $req) {
+        $admin = Admin::find($req->id);
         if (!empty($admin)) {
-            if (Hash::check($req->old_pass, $admin->password)) {
+            if (!empty($req->old_pass)) {
+                if (Hash::check($req->old_pass, $admin->password)) {
+                    $admin->update([
+                        'password'  => Hash::make($req->new_pass)
+                    ]);
+                    return redirect()->route('news.list')->with('status', 'success')->with('msg', 'Change password success');
+                }
+            } else {
                 $admin->update([
                     'password'  => Hash::make($req->new_pass)
                 ]);
-                return redirect()->route('news.list')->with('status', 'success')->with('msg', 'Change password success');
+                return redirect()->route('admin.list')->with('status', 'success')->with('msg', 'Change password success');
             }
+
             return redirect()->route('news.list')->with('status', 'error')->with('msg', 'Old password is incorrect');
         }
         return redirect()->route('news.list')->with('status', 'error')->with('msg', 'Have error while changing pass');

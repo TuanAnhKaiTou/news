@@ -72,7 +72,7 @@
                     <div class="row">
                         <div class="col-6 form-group">
                             <label>Content @if (!isset($news)) <span style="color: red">*</span> @endif</label>
-                            <textarea id="textarea" name="content" id="content" class="form-control" rows="5" placeholder="Enter content">@isset($news) {{ $news->content }} @endisset</textarea>
+                            <textarea name="content" id="content" class="form-control" rows="5" placeholder="Enter content">@isset($news) {{ $news->content }} @endisset</textarea>
                         </div>
                         <div class="col-6 form-group">
                             <label>Image</label>

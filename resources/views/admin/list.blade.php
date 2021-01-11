@@ -109,12 +109,14 @@
                                             <div class="form-group">
                                                 <label for="new_pass" class="control-label">New pass <span style="color: red">*</span></label>
                                                 <input type="password" class="form-control" id="new_pass" name="new_pass" minlength="6" maxlength="20" required placeholder="Enter password">
+                                                <span toggle="#new_pass" class="fa fa-eye new_pass eyes"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="confirm_pass" class="control-label">Confirm pass <span style="color: red">*</span></label>
                                                 <input type="password" class="form-control" id="confirm_pass" required minlength="6" maxlength="20" placeholder="Enter confirm pass">
+                                                <span toggle="#confirm_pass" class="fa fa-eye confirm_pass eyes"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -161,6 +163,13 @@
         padding: 0.5rem 0.5rem !important;
         color: inherit;
         margin-right: 10px;
+    }
+
+    .eyes {
+        float: right;
+        margin-top: -24px;
+        padding-right: 8px;
+        opacity: 0.8;
     }
 </style>
 @endsection
@@ -219,6 +228,26 @@
         $('.btn-changePass').click(function() {
             var mId = $(this).data('id');
             $('#admin-id').val(mId);
+        });
+
+        $(".new_pass").click(function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+
+        $(".confirm_pass").click(function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
         });
 
         $('#confirm_pass').keyup(function() {
